@@ -58,9 +58,9 @@ export const NavBar = () => {
             verticalAlign={'middle'}>
           <HStack>
             <Image
-                src="/logo_CS.png"
+                src="/logo512.png"
                 width={"40px"}
-                alt={"USEC LOGO"}>
+                alt={"eBallot LOGO"}>
             </Image>
 
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
