@@ -16,6 +16,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd e-ballot-backend
+          export GITHUB_ACTION=True
           python -m pip install --upgrade pip
           pip install ruff pytest
           pip install -r requirements.txt
