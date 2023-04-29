@@ -1,0 +1,31 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+e-ballot-frontend/node_modules
+e-ballot-frontend/.pnp
+e-ballot-frontend/.pnp.js
+
+# testing
+e-ballot-frontend/coverage
+
+# production
+e-ballot-frontend/build
+
+# misc
+.*
+e-ballot-frontend/.DS_Store
+e-ballot-frontend/.env.local
+e-ballot-frontend/.env.development.local
+e-ballot-frontend/.env.test.local
+e-ballot-frontend/.env.production.local
+
+e-ballot-frontend/npm-debug.log*
+e-ballot-frontend/yarn-debug.log*
+e-ballot-frontend/yarn-error.log*
+
+# Flask
+*.pyc
+e-ballot-backend/data_manager/secrets.json
+*.
+*.xml
+*.iml
