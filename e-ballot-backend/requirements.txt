@@ -29,3 +29,4 @@ requests
 tqdm
 bs4
 requests_html
+Pillow~=9.5.0
