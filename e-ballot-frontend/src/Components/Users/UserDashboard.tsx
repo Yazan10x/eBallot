@@ -71,9 +71,9 @@ export const UserDashboard = () => {
                 rounded={'md'}
                 overflow={'hidden'}>
                 <Flex justify={'center'} mt={12}>
-                    <Avatar
-                        size={'xxxl'}
-                        src={user?.profile.first_name}
+                    <Image
+                        width={"500px"}
+                        src={user?.profile.government_id_image}
                         css={{
                             border: '2px solid white',
                         }}
@@ -90,8 +90,7 @@ export const UserDashboard = () => {
                     </VStack>
                     <Center>
                         <HStack align={"stretch"} alignItems={'center'}>
-                            <VStack width={"300px"} divider={<StackDivider />} spacing='6'>
-                                <Box>
+                            <Box>
                                 <Heading size='m' textTransform='uppercase'>
                                   Date of Birth
                                 </Heading>
@@ -99,23 +98,8 @@ export const UserDashboard = () => {
                                     {user?.profile.dob.toDateString().slice(4)}
                                 </Text>
                               </Box>
-                            </VStack>
-                            <Spacer width={"30px"}></Spacer>
-                            <VStack width={"300px"} divider={<StackDivider />} spacing='6'>
-                              <Box>
-                                <Heading size='m' textTransform='uppercase'>
-                                  Gender
-                                </Heading>
-                                <Text pt='2' fontSize='s'>
-                                    {user?.profile.gender}
-                                </Text>
-                              </Box>
-                            </VStack>
-                        </HStack>
-                    </Center>
-                    <Spacer height={"100px"}></Spacer>
-                    <Center>
-                        <Box>
+                            <Spacer width={"80px"}></Spacer>
+                            <Box>
                             <Heading size='m' textTransform='uppercase'>
                               Province
                             </Heading>
@@ -123,8 +107,20 @@ export const UserDashboard = () => {
                                 {user?.province.toUpperCase()}
                             </Text>
                         </Box>
+                            <Spacer width={"80px"}></Spacer>
+                            <Box>
+                                <Heading size='m' textTransform='uppercase'>
+                                  Gender
+                                </Heading>
+                                <Text pt='2' fontSize='s'>
+                                    {user?.profile.gender}
+                                </Text>
+                              </Box>
+                        </HStack>
                     </Center>
-                    <Spacer height={"30px"}></Spacer>
+                    <Spacer height={"80px"}></Spacer>
+                    <Center>
+                    </Center>
                     <Center>
                         <Button
                             colorScheme="red"
