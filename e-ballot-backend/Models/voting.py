@@ -4,6 +4,7 @@ from bson import ObjectId
 from bson.binary import Binary
 from datetime import datetime
 from routes.users.get import get_usersObject
+from Models import User
 
 class Party:
     oid: ObjectId
@@ -50,30 +51,31 @@ class Party:
 class VotingSystem:
 
     votedUsers: dict
-    parties: Party
+    parties: list[Party]
 
     def __init__(self, votedUsers, parties) -> None:
         self.votedUsers = votedUsers
-        self.partyVotes = parties
+        self.parties = parties
 
     # Fix: changed User to str, changed user.oid to user
     def vote(self, user: User, party: Party):
-        allUsers = get_usersObject()
-
         # step 1: check if the user exists in the database
         # step 2: check if they already voted or not
         # step 3: if they have, then return
         # step 4: if they havent, then decide which party the user wants to vote for and increment the specific party
+
+        allUsers = get_usersObject()
+
         for i in allUsers:
             if str(user.oid) == i["_id"]:
                 if user not in self.votedUsers:
                     self.votedUsers[user] = party
                 else:
                     return
-                if party not in self.partyVotes:
-                    self.partyVotes[party] = 1
-                else:
-                    self.partyVotes[party] += 1
+                if party not in self.parties:
+                    self.partyVotes.append(Party)
+                if user.province == 'ontario':
+                    party.ontario.append(user.oid)
 
     # utility methods
     def getPortraitImages(self) -> list:
