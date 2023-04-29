@@ -57,7 +57,7 @@ export const UserDashboard = () => {
     const handle_vote = () => {
 
     }
- 
+
     useEffect(() => {
         get_user();
     }, [])
@@ -68,12 +68,12 @@ export const UserDashboard = () => {
                 w={'full'}
                 bg={useColorModeValue('white', 'gray.800')}
                 boxShadow={'2xl'}
-                rounded={'md'} 
+                rounded={'md'}
                 overflow={'hidden'}>
-                <Flex justify={'center'} mt={12}> 
+                <Flex justify={'center'} mt={12}>
                     <Avatar
                         size={'xxxl'}
-                        src={user? URL.createObjectURL(user.profile.government_id_image): undefined}
+                        src={user?.profile.government_id_image}
                         css={{
                             border: '2px solid white',
                         }}

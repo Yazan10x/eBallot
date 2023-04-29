@@ -11,8 +11,9 @@ export namespace UsersAPI {
             .then((res) => {
                 let user = res.data as User
                 user.profile.dob = new Date(user.profile.dob)
-                user.profile.government_id_image = new Blob([res.data.government_id_image], {type: 'image/jpeg'})
-                user.profile.portrait_image = new Blob([res.data.portrait_image], {type: 'image/jpeg'})
+                user.profile.government_id_image = CURRENT_URL + "/users/get_user_government_id_image/" + user._id.toString()
+                user.profile.portrait_image = ""
+                console.log(user)
                 return user
             })
             .catch((res) => {
