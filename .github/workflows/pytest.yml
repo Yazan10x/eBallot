@@ -24,6 +24,6 @@ jobs:
           DB_API_KEY: ${{ secrets.DB_API_KEY }}
           DB_API_ADDRESS: ${{ secrets.DB_API_ADDRESS }}
           FRONT_END: ${{ secrets.FRONT_END }}
-        run: |
+        run:
           cd e-ballot-backend
           python3 -m pytest
