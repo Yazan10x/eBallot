@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout GitHub Runner 2
+      - name: Checkout GitHub Runner 3
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -23,10 +23,10 @@ jobs:
 
       - name: Test with pytest
         env:
-          DB_API_USERNAME: ${{ secrets.admin }}
-          DB_API_KEY: ${{ secrets.DB_API_KEY }}
-          DB_API_ADDRESS: ${{ secrets.DB_API_ADDRESS }}
-          FRONT_END: ${{ secrets.FRONT_END }}
+          DB_API_USERNAME: ${{secrets.admin}}
+          DB_API_KEY: ${{secrets.DB_API_KEY}}
+          DB_API_ADDRESS: ${{secrets.DB_API_ADDRESS}}
+          FRONT_END: ${{secrets.FRONT_END}}
         run: |
           cd e-ballot-backend
           python3 -m pytest
