@@ -37,7 +37,7 @@ class ElectionSystem:
                 return user.oid
             if user.oid in party.alberta:
                 return user.oid
-            return None
+        return None
 
     @staticmethod
     def increment_party_voters(party_id: ObjectId, user_id: ObjectId) -> None:
