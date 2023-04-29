@@ -8,7 +8,7 @@ jobs:
     steps:
 
       - name: Checkout GitHub Runner 2
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -16,7 +16,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: |
+        run:
           cd e-ballot-backend
           python -m pip install --upgrade pip
           pip install -r requirements.txt
