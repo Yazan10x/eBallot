@@ -5,34 +5,47 @@ This File Contains the User Model
 from __future__ import annotations
 from typing import Optional
 from bson import ObjectId
+from bson.binary import Binary
 
 # Imports
 from data_manager.e_ballot_db import E_BALLOT_DB
 
 
 class User:
-    class Profile:
 
+    class Profile:
         first_name: str
         last_name: str
+        age: int
+        government_id_image: Binary
+        portrait_image: Binary
 
-        def __init__(self, first_name: str, last_name: str) -> None:
+        def __init__(self, first_name: str, last_name: str, age: int, government_id_image: Binary, portrait_image: Binary) -> None:
             self.first_name = first_name
             self.last_name = last_name
+            self.age = age
+            self.government_id_image = government_id_image
+            self.portrait_image = portrait_image
 
         @staticmethod
-        def from_json(doc: dict) -> User.Profile:
-            return User.Profile(
+        def from_json(doc: dict) -> Profile:
+            return Profile(
                 first_name=doc['first_name'],
                 last_name=doc['last_name'],
+                age=doc['age'],
+                government_id_image=doc['government_id_image'],
+                portrait_image=doc['portrait_image']
             )
 
         def to_json(self) -> dict:
-            return \
-                {
-                    'first_name': self.first_name,
-                    'last_name': self.last_name,
-                }
+            return {
+                'first_name': self.first_name,
+                'last_name': self.last_name,
+                'age': self.age,
+                'government_id_image': self.government_id_image,
+                'portrait_image': self.portrait_image
+            }
+
 
     # ===================================
 
