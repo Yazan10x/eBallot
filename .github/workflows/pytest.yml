@@ -16,17 +16,17 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run:
+        run: |
           cd e-ballot-backend
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Test with pytest
-        env:
+        env: |
           DB_API_USERNAME: ${{ secrets.admin }}
           DB_API_KEY: ${{ secrets.DB_API_KEY }}
           DB_API_ADDRESS: ${{ secrets.DB_API_ADDRESS }}
           FRONT_END: ${{ secrets.FRONT_END }}
-        run:
+        run: |
           cd e-ballot-backend
           python3 -m pytest
