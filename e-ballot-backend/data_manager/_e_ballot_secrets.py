@@ -13,7 +13,7 @@ def get_db() -> tuple[str, str]:
         _DB_PASSWORD = os.environ.get('DB_API_KEY')
 
         _USEC_DB_ADDRESS = f'mongodb+srv://{_DB_USERNAME}:{_DB_PASSWORD}@{_DB_HOST}'
-        _USEC_DB_NAME = 'CREW_MS'
+        _USEC_DB_NAME = 'E_BALLOT_DB'
 
     else:
         with open('data_manager/secrets.json') as secret_json:
@@ -24,7 +24,7 @@ def get_db() -> tuple[str, str]:
         _DB_PASSWORD = secret_json.get('DB_API_KEY')
 
         _USEC_DB_ADDRESS = f'mongodb+srv://{_DB_USERNAME}:{_DB_PASSWORD}@{_DB_HOST}'
-        _USEC_DB_NAME = 'CREW_MS'
+        _USEC_DB_NAME = 'E_BALLOT_DB'
 
     return _USEC_DB_ADDRESS, _USEC_DB_NAME
 
