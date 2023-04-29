@@ -113,15 +113,17 @@ export const UserDashboard = () => {
                             </VStack>
                         </HStack>
                     </Center>
-                    <Spacer height={"15px"}></Spacer>
-                    <Box>
-                        <Heading size='m' textTransform='uppercase'>
-                          Province
-                        </Heading>
-                        <Text pt='2' fontSize='s'>
-                            {user?.province.toUpperCase()}
-                        </Text>
-                    </Box>
+                    <Spacer height={"100px"}></Spacer>
+                    <Center>
+                        <Box>
+                            <Heading size='m' textTransform='uppercase'>
+                              Province
+                            </Heading>
+                            <Text pt='2' fontSize='s'>
+                                {user?.province.toUpperCase()}
+                            </Text>
+                        </Box>
+                    </Center>
                     <Spacer height={"30px"}></Spacer>
                     <Center>
                         <Button
