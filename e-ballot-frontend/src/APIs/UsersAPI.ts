@@ -1,4 +1,4 @@
-import FLASK_HTTPS from "./0_FLASK_API";
+import FLASK_HTTPS, {CURRENT_URL} from "./0_FLASK_API";
 import {ObjectID} from "bson";
 import {User} from "../Models/User";
 
@@ -12,7 +12,7 @@ export namespace UsersAPI {
                 let user = res.data as User
                 user.profile.dob = new Date(user.profile.dob)
                 user.profile.government_id_image = CURRENT_URL + "/users/get_user_government_id_image/" + user._id.toString()
-                user.profile.portrait_image = ""
+                user.profile.portrait_image = CURRENT_URL + "/users/get_user_image/" + user._id.toString()
                 console.log(user)
                 return user
             })
