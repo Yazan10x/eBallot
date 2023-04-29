@@ -16,7 +16,10 @@ jobs:
       - name: Install dependencies
         run: |
           cd e-ballot-backend
-          
+          DB_API_USERNAME: ${{ variables.admin }}
+          DB_API_KEY: ${{ variables.PNlM0Cb4yEz37tlT }}
+          DB_API_ADDRESS: ${{ secrets.eballot.ytf631u.mongodb.net/test }}
+          FRONT_END: ${{ variables.T6*xlf86hL5KVKmy&GCsqaT3BENNEX }}
           python -m pip install --upgrade pip
           pip install ruff pytest
           pip install -r requirements.txt
