@@ -6,8 +6,8 @@ export interface Profile {
     dob: Date;
     gender: string;
     email: string;
-    government_id_image: string;
-    portrait_image: string;
+    government_id_image: Blob;
+    portrait_image: Blob;
 }
 
 export interface User {
