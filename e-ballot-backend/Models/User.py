@@ -6,6 +6,7 @@ from __future__ import annotations
 from typing import Optional
 from bson import ObjectId
 from bson.binary import Binary
+from datetime import datetime
 
 # Imports
 from data_manager.e_ballot_db import E_BALLOT_DB
@@ -16,7 +17,7 @@ class User:
     class Profile:
         first_name: str
         last_name: str
-        age: int
+        age: datetime
         government_id_image: Binary
         portrait_image: Binary
 
