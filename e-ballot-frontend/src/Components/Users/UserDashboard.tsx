@@ -54,6 +54,10 @@ export const UserDashboard = () => {
             })
     }
 
+    const handle_vote = () => {
+
+    }
+
     useEffect(() => {
         get_user();
     }, [])
@@ -87,28 +91,12 @@ export const UserDashboard = () => {
                     <Center>
                         <HStack align={"stretch"} alignItems={'center'}>
                             <VStack width={"300px"} divider={<StackDivider />} spacing='6'>
-                              <Box>
+                                <Box>
                                 <Heading size='m' textTransform='uppercase'>
-                                  Position
+                                  Date of Birth
                                 </Heading>
                                 <Text pt='2' fontSize='s'>
-                                    {user?.profile.first_name}
-                                </Text>
-                              </Box>
-                              <Box>
-                                <Heading size='m' textTransform='uppercase'>
-                                  Username
-                                </Heading>
-                                <Text pt='2' fontSize='s'>
-                                  {user?.profile.first_name}
-                                </Text>
-                              </Box>
-                              <Box>
-                                <Heading size='m' textTransform='uppercase'>
-                                  Blood type
-                                </Heading>
-                                <Text pt='2' fontSize='s'>
-                                    {user?.profile.first_name}
+                                    {user?.profile.dob.toDateString().slice(4)}
                                 </Text>
                               </Box>
                             </VStack>
@@ -116,79 +104,83 @@ export const UserDashboard = () => {
                             <VStack width={"300px"} divider={<StackDivider />} spacing='6'>
                               <Box>
                                 <Heading size='m' textTransform='uppercase'>
-                                  Age
+                                  Gender
                                 </Heading>
                                 <Text pt='2' fontSize='s'>
-                                    {user?.profile.first_name}
-                                </Text>
-                              </Box>
-                              <Box>
-                                <Heading size='m' textTransform='uppercase'>
-                                  race
-                                </Heading>
-                                <Text pt='2' fontSize='s'>
-                                  {user?.profile.first_name}
-                                </Text>
-                              </Box>
-                              <Box>
-                                <Heading size='m' textTransform='uppercase'>
-                                  Sex
-                                </Heading>
-                                <Text pt='2' fontSize='s'>
-                                    {user?.profile.first_name}
+                                    {user?.profile.gender}
                                 </Text>
                               </Box>
                             </VStack>
                         </HStack>
                     </Center>
+                    <Spacer height={"15px"}></Spacer>
+                    <Box>
+                        <Heading size='m' textTransform='uppercase'>
+                          Province
+                        </Heading>
+                        <Text pt='2' fontSize='s'>
+                            {user?.province.toUpperCase()}
+                        </Text>
+                    </Box>
                     <Spacer height={"30px"}></Spacer>
-                    <HStack>
+                    <Center>
+                        <Button
+                            colorScheme="red"
+                            bgGradient="linear(to-r, red.400, red.500, red.600)"
+                            color="white"
+                            variant="solid"
+                            onClick={handle_vote}
+                            >
+                            Vote!
+                        </Button>
+                    </Center>
+                    {/*<HStack>*/}
 
-                        <Button leftIcon={<EditIcon/>} onClick={onOpen2}>
-                            <Modal isOpen={isOpen2} onClose={onClose2}>
-                                <ModalOverlay />
-                                <ModalContent>
-                                  <ModalHeader>Unauthorized Access :: Admin Permission Required</ModalHeader>
-                                  <ModalCloseButton />
-                                    <ModalBody>
-                                        You need to be an admin to access this page
-                                  </ModalBody>
-                                  <ModalFooter>
-                                    <Button colorScheme='blue' mr={3} onClick={onClose2}>
-                                      Close
-                                    </Button>
-                                  </ModalFooter>
-                                </ModalContent>
-                              </Modal>
-                        </Button>
-                        <Button leftIcon={<ArrowForwardIcon/>}>
-                            <Link href={"/health_report"}>View Medical Record</Link>
-                        </Button>
-                        <Spacer></Spacer>
-                        <Button leftIcon={<BiExpand></BiExpand>} onClick={onOpen}>
-                            Biography
-                        </Button>
-                        <Button leftIcon={<LockIcon></LockIcon>}>
-                            <Link href={"/incident_report"}>File A Report</Link>
-                            <Modal isOpen={isOpen} onClose={onClose}>
-                                <ModalOverlay />
-                                <ModalContent>
-                                  <ModalHeader>Biography</ModalHeader>
-                                  <ModalCloseButton />
-                                    <ModalBody>
-                                        {user?.profile.first_name}
-                                  </ModalBody>
-                                  <ModalFooter>
-                                    <Button colorScheme='blue' mr={3} onClick={onClose}>
-                                      Close
-                                    </Button>
-                                  </ModalFooter>
-                                </ModalContent>
-                              </Modal>
-                        </Button>
+                    {/*    <Button leftIcon={<EditIcon/>} onClick={onOpen2}>*/}
+                    {/*        <Modal isOpen={isOpen2} onClose={onClose2}>*/}
+                    {/*            <ModalOverlay />*/}
+                    {/*            <ModalContent>*/}
+                    {/*              <ModalHeader>Unauthorized Access :: Admin Permission Required</ModalHeader>*/}
+                    {/*              <ModalCloseButton />*/}
+                    {/*                <ModalBody>*/}
+                    {/*                    You need to be an admin to access this page*/}
+                    {/*              </ModalBody>*/}
+                    {/*              <ModalFooter>*/}
+                    {/*                <Button colorScheme='blue' mr={3} onClick={onClose2}>*/}
+                    {/*                  Close*/}
+                    {/*                </Button>*/}
+                    {/*              </ModalFooter>*/}
+                    {/*            </ModalContent>*/}
+                    {/*          </Modal>*/}
+                    {/*    </Button>*/}
+                    {/*    <Button leftIcon={<ArrowForwardIcon/>}>*/}
+                    {/*        <Link href={"/health_report"}>View Medical Record</Link>*/}
+                    {/*    </Button>*/}
+                    {/*    <Spacer></Spacer>*/}
+                    {/*    <Button leftIcon={<BiExpand></BiExpand>} onClick={onOpen}>*/}
+                    {/*        Biography*/}
+                    {/*    </Button>*/}
+                    {/*    <Button leftIcon={<LockIcon></LockIcon>}>*/}
+                    {/*        <Link href={"/incident_report"}>File A Report</Link>*/}
+                    {/*        <Modal isOpen={isOpen} onClose={onClose}>*/}
+                    {/*            <ModalOverlay />*/}
+                    {/*            <ModalContent>*/}
+                    {/*              <ModalHeader>Biography</ModalHeader>*/}
+                    {/*              <ModalCloseButton />*/}
+                    {/*                <ModalBody>*/}
+                    {/*                    {user?.profile.first_name}*/}
+                    {/*              </ModalBody>*/}
+                    {/*              <ModalFooter>*/}
+                    {/*                <Button colorScheme='blue' mr={3} onClick={onClose}>*/}
+                    {/*                  Close*/}
+                    {/*                </Button>*/}
+                    {/*              </ModalFooter>*/}
+                    {/*            </ModalContent>*/}
+                    {/*          </Modal>*/}
+                    {/*    </Button>*/}
 
 
-                    </HStack>
+                    {/*</HStack>*/}
                 </Box>
             </Box>
         </Center>

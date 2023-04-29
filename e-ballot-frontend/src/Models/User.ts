@@ -13,4 +13,5 @@ export interface Profile {
 export interface User {
     _id: ObjectID;
     profile: Profile;
+    province: string
 }

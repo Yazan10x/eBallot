@@ -18,7 +18,7 @@ class User:
         first_name: str
         last_name: str
         dob: datetime
-        gender: str # M/F
+        gender: str    # M/F
         email: str
         government_id_image: Binary
         portrait_image: Binary
@@ -60,16 +60,19 @@ class User:
 
     oid: ObjectId
     profile: User.Profile
+    province: str
 
-    def __init__(self, oid: ObjectId, profile: User.Profile) -> None:
+    def __init__(self, oid: ObjectId, profile: User.Profile, province: str) -> None:
         self.oid = oid
         self.profile = profile
+        self.province = province
 
     def to_json(self) -> dict:
         return \
             {
                 '_id': self.oid,
                 'profile': self.profile.to_json(),
+                'province': self.province,
             }
 
     @staticmethod
@@ -77,6 +80,7 @@ class User:
         return User(
             oid=doc['_id'],
             profile=User.Profile.from_json(doc['profile']),
+            province=doc['province'],
         )
 
     def __repr__(self) -> str:

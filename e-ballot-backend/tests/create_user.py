@@ -5,9 +5,10 @@ from data_manager.e_ballot_db import E_BALLOT_DB
 from datetime import datetime
 
 
-def create_user(first_name: str, last_name: str, dob: datetime, gender: str, email: str, government_id_image: Binary, portrait_image: Binary):
+def create_user(first_name: str, last_name: str, dob: datetime, gender: str, email: str,
+                government_id_image: Binary, portrait_image: Binary, province: str):
     profile = User.Profile(first_name, last_name, dob, gender, email, government_id_image, portrait_image)
-    user = User(ObjectId("644ca69febcdc710c51d0b3d"), profile)
+    user = User(ObjectId("644ca69febcdc710c51d0b3d"), profile, province)
     E_BALLOT_DB.users_coll.insert_one(user.to_json())
 
 
@@ -21,4 +22,4 @@ if __name__ == '__main__':
         image_data = f.read()
     port_image = Binary(image_data)
 
-    create_user("Yazan", "Armoush", datetime(2003, 5, 8), "M", "yazan@armoush.com", gov_id_image, port_image)
+    create_user("Yazan", "Armoush", datetime(2003, 5, 8), "M", "yazan@armoush.com", gov_id_image, port_image, "ontario")
