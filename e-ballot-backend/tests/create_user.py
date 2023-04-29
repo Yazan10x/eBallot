@@ -6,8 +6,8 @@ from io import BytesIO
 from PIL import Image
 
 
-def create_user(first_name: str, last_name: str, age: int, government_id_image: Binary, portrait_image: Binary):
-    profile = User.Profile(first_name, last_name, age, government_id_image, portrait_image)
+def create_user(first_name: str, last_name: str, dob: datetime, email: str, government_id_image: Binary, portrait_image: Binary):
+    profile = User.Profile(first_name, last_name, dob, email, government_id_image, portrait_image)
     user = User(ObjectId("644ca69febcdc710c51d0b3d"), profile)
     E_BALLOT_DB.users_coll.insert_one(user.to_json())
 
@@ -39,7 +39,3 @@ if __name__ == '__main__':
 
     # Display the image using the show() method or save it using the save() method
     image.show()
-
-
-
-
