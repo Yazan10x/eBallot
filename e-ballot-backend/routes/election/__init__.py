@@ -2,13 +2,11 @@
 import flask
 from flask import Blueprint, Response, jsonify
 from bson import ObjectId
-
-# Imports
-from routes.election import get, post
+from Models.ElectionSystem import ElectionSystem
 
 election = Blueprint('election', __name__)
 
 
-@election.route("/election_results/<party_id>", methods=['GET'])
-def get_election_results() -> Response:
-    return get.get_election_results()
+@election.route("/vote/<user_id>/<party_id>", methods=['GET'])
+def vote(user_id: str, party_id: str) -> Response:
+    return jsonify(ElectionSystem.vote(ObjectId(user_id), ObjectId(party_id)))

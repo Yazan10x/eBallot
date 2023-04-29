@@ -42,7 +42,8 @@ class Party:
                 'ontario': self.ontario,
                 'quebec': self.quebec,
                 'bc': self.bc,
-                'alberta': self.alberta
+                'alberta': self.alberta,
+                'total_votes': self.get_all_voters()
             }
 
     def get_all_voters(self):
