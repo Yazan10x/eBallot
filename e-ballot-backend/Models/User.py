@@ -28,8 +28,8 @@ class User:
             self.portrait_image = portrait_image
 
         @staticmethod
-        def from_json(doc: dict) -> Profile:
-            return Profile(
+        def from_json(doc: dict) -> User.Profile:
+            return User.Profile(
                 first_name=doc['first_name'],
                 last_name=doc['last_name'],
                 age=doc['age'],
@@ -45,7 +45,6 @@ class User:
                 'government_id_image': self.government_id_image,
                 'portrait_image': self.portrait_image
             }
-
 
     # ===================================
 
