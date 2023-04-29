@@ -1,4 +1,4 @@
-from Models.Voting import Voting
+from Models.ElectionSystem import Voting
 
 def create_user(first_name: str, last_name: str, dob: datetime, email: str, government_id_image: Binary, portrait_image: Binary):
     profile = User.Profile(first_name, last_name)
