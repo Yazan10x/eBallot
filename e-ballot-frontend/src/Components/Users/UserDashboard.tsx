@@ -54,10 +54,20 @@ export const UserDashboard = () => {
             })
     }
 
+    const convert_to_img = (str: string) => {
+        const binaryString = window.atob(str);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+        const imageDataUrl = `data:image/jpeg;base64,${btoa(String.fromCharCode(...bytes))}`;
+        return imageDataUrl;
+    }
+
     const handle_vote = () => {
 
     }
-
+ 
     useEffect(() => {
         get_user();
     }, [])
@@ -68,17 +78,17 @@ export const UserDashboard = () => {
                 w={'full'}
                 bg={useColorModeValue('white', 'gray.800')}
                 boxShadow={'2xl'}
-                rounded={'md'}
+                rounded={'md'} 
                 overflow={'hidden'}>
-                <Flex justify={'center'} mt={12}>
+                <Flex justify={'center'} mt={12}> 
                     <Avatar
                         size={'xxxl'}
-                        src={user?.profile.first_name}
                         css={{
                             border: '2px solid white',
                         }}
                     />
                 </Flex>
+                {user?.profile.government_id_image}
 
                 <Box p={6}>
                     <VStack spacing={0} align={'center'} mb={5}>
