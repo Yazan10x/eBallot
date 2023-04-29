@@ -3,7 +3,7 @@ from typing import Optional
 from bson import ObjectId
 from bson.binary import Binary
 from datetime import datetime
-from routes.users.get import get_usersObject
+from routes.users.get import get_users
 from Models import User
 
 class Party:
@@ -64,9 +64,9 @@ class VotingSystem:
         # step 3: if they have, then return
         # step 4: if they havent, then decide which party the user wants to vote for and increment the specific party
 
-        allUsers = get_usersObject()
+        all_users = get_users()
 
-        for i in allUsers:
+        for i in all_users:
             if str(user.oid) == i["_id"]:
                 if user not in self.votedUsers:
                     self.votedUsers[user] = party
