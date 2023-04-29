@@ -17,7 +17,7 @@ export const NotFound = () => {
             display="inline-block"
             as="h2"
             size="2xl"
-            bgGradient="linear(to-r, cyan.400, cyan.600)"
+            bgGradient="linear(to-r, red.400, red.600)"
             backgroundClip="text">
             404
         </Heading>
@@ -29,8 +29,8 @@ export const NotFound = () => {
         </Text>
 
         <Button
-            colorScheme="teal"
-            bgGradient="linear(to-r, cyan.400, cyan.500, cyan.600)"
+            colorScheme="red"
+            bgGradient="linear(to-r, red.400, red.500, red.600)"
             color="white"
             variant="solid"
             onClick={handle_home}
