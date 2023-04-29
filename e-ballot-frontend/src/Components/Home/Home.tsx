@@ -41,7 +41,8 @@ export const Home = () => {
 
   const handleCaptureClick = React.useCallback(() => {
     if (webcamRef.current) {
-      const screenshot = webcamRef.current.getScreenshot() //ts-ignore;
+      // @ts-ignore
+      const screenshot = webcamRef.current.getScreenshot();
       setScreenshot(screenshot);
     }
   }, [webcamRef, setScreenshot]);
@@ -92,8 +93,7 @@ export const Home = () => {
             </Text>
           </VStack>
           <VStack>
-            //@ts-ignore
-            {showWebcam && <Webcam videoConstraints={{ width: 640, height: 480 }} screenshotFormat="image/jpeg" ref={webcamRef}> </Webcam>}
+            {showWebcam && <Webcam videoConstraints={{ width: 640, height: 480 }} screenshotFormat="image/jpeg" ref={webcamRef}></Webcam>}
             {screenshot && <img src={screenshot} alt="Screenshot" />}
           </VStack>
         </VStack>
