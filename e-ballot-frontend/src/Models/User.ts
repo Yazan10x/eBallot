@@ -4,9 +4,10 @@ export interface Profile {
     first_name: string;
     last_name: string;
     dob: Date;
+    gender: string;
     email: string;
-    government_id_image: BinaryData;
-    portrait_image: BinaryData;
+    government_id_image: string;
+    portrait_image: string;
 }
 
 export interface User {
