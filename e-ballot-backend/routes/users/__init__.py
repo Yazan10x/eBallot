@@ -11,9 +11,9 @@ users = Blueprint('users', __name__)
 
 @users.route("/get_user/<user_id>", methods=['GET'])
 def get_user(user_id: str) -> Response:
-    return get.get_user(ObjectId(user_id))
+    return get.get_user_json(ObjectId(user_id))
 
 
 @users.route("/get_users", methods=['GET'])
 def get_users() -> Response:
-    return get.get_users()
+    return get.get_users_json()
