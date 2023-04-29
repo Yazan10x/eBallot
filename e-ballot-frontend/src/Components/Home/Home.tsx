@@ -41,7 +41,7 @@ export const Home = () => {
 
   const handleCaptureClick = React.useCallback(() => {
     if (webcamRef.current) {
-      const screenshot = webcamRef.current.getScreenshot();
+      const screenshot = webcamRef.current.getScreenshot() //ts-ignore;
       setScreenshot(screenshot);
     }
   }, [webcamRef, setScreenshot]);
@@ -78,8 +78,15 @@ export const Home = () => {
           <VStack>
             <Text color={"gray.500"}>
               <Heading>
-                <Button colorScheme="teal" size="lg" onClick={handleViewAccountClick}>
-                  Verify ID
+                <Button
+                    colorScheme="red"
+                    bgGradient="linear(to-r, red.400, red.500, red.600)"
+                    color="white"
+                    variant="solid"
+                    size={"lg"}
+                    onClick={handleViewAccountClick}
+                    >
+                    Vote Now!
                 </Button>
               </Heading>
             </Text>
