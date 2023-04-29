@@ -1,5 +1,5 @@
 """
-User Post
+Party Post
 """
 # from typing import Optional
 #

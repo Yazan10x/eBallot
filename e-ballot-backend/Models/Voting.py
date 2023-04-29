@@ -4,53 +4,11 @@ from bson import ObjectId
 from bson.binary import Binary
 from datetime import datetime
 from routes.users.get import get_users
-from Models import User
-
-class Party:
-    oid: ObjectId
-    name: str
-    ontario: list[ObjectId]
-    quebec: list[ObjectId]
-    bc: list[ObjectId]
-    alberta: list[ObjectId]
-
-    def __init__(self, oid, name, ontario, quebec, bc, alberta):
-        self.oid = oid
-        self.name = name
-        self.ontario = ontario
-        self.quebec = quebec
-        self.bc = bc
-        self.alberta = alberta
-
-    @staticmethod
-    def from_json(doc: dict) -> Party:
-        return User.Profile(
-            oid=doc['_id'],
-            name=doc['name'],
-            ontario=doc['ontario'],
-            quebec=doc['quebec'],
-            bc=doc['bc'],
-            alberta=doc['alberta']
-        )
-
-    def to_json(self) -> dict:
-        return \
-            {
-                '_id': self.oid,
-                'name': self.name,
-                'ontario': self.ontario,
-                'quebec': self.quebec,
-                'bc': self.bc,
-                'alberta': self.alberta
-            }
-
-    def get_all_voters(self):
-        return self.ontario + self.quebec + self.bc + self.alberta
-
+from Models import User, Party
 
 class VotingSystem:
 
-    votedUsers: dict
+    votedUsers: list[User]
     parties: list[Party]
 
     def __init__(self, votedUsers, parties) -> None:
@@ -64,18 +22,27 @@ class VotingSystem:
         # step 3: if they have, then return
         # step 4: if they havent, then decide which party the user wants to vote for and increment the specific party
 
-        all_users = get_users()
+        allUsers = get_users()
 
-        for i in all_users:
-            if str(user.oid) == i["_id"]:
-                if user not in self.votedUsers:
-                    self.votedUsers[user] = party
-                else:
-                    return
-                if party not in self.parties:
-                    self.partyVotes.append(Party)
-                if user.province == 'ontario':
-                    party.ontario.append(user.oid)
+        if user in allUsers:
+            if user not in self.votedUsers:
+                self.votedUsers.append(user)
+
+            if party not in self.parties:
+                self.parties.append(Party)
+
+            if user.province == 'ontario':
+                party.ontario.append(user.oid)
+
+            if user.province == 'quebec':
+                party.ontario.append(user.oid)
+
+            if user.province == 'bc':
+                party.ontario.append(user.oid)
+
+            if user.province == 'alberta':
+                party.ontario.append(user.oid)
+
 
     # utility methods
     def getPortraitImages(self) -> list:
@@ -92,9 +59,6 @@ class VotingSystem:
                 users.append(user)
 
         return users
-
-    def getWinningParty(self):
-        return max(self.partyVotes, key=self.partyVotes.get)
 
     def totalVotes(self):
         return len(self.votedUsers)

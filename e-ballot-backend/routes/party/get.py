@@ -1,5 +1,5 @@
 """
-User Get
+Party Get
 """
 
 from bson import ObjectId
@@ -11,15 +11,13 @@ from data_manager.e_ballot_db import E_BALLOT_DB
 
 
 def get_party_json(party_id: ObjectId) -> Response:
-    party = get_user(user_id).to_json()
-    user['_id'] = str(user['_id'])
-    user['profile']['government_id_image'] = str(user['profile']['government_id_image'])
-    user['profile']['portrait_image'] = str(user['profile']['portrait_image'])
-    return jsonify(user)
+    party = get_party(party_id).to_json()
+    party['_id'] = str(party['_id'])
+    return jsonify(party)
 
 
-def get_party(party_id: ObjectId) -> User:
-    party = dict(E_BALLOT_DB.users_coll.find_one({"_id": party_id}))
+def get_party(party_id: ObjectId) -> Party:
+    party = dict(E_BALLOT_DB.party_coll.find_one({"_id": party_id}))
     party = Party.from_json(party)
     return party
 
