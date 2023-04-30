@@ -7,7 +7,7 @@ from routes.users.get import get_user
 def open_user(user_id: ObjectId) -> None:
     u = get_user(user_id)
 
-    binary_data = u.profile.portrait_image
+    binary_data = u.profile.id2
     bytes_io = BytesIO(binary_data)
     image = Image.open(bytes_io)
     image.show()
