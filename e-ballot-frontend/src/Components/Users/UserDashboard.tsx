@@ -32,7 +32,7 @@ import {
   ModalFooter,
   ModalCloseButton,
   useDisclosure,
-  useTagStyles,
+  useTagStyles, useToast,
 } from "@chakra-ui/react";
 import {
   BiExpand,
@@ -53,13 +53,14 @@ import { useEffect, useState } from "react";
 import { User } from "../../Models/User";
 import { Party } from "../../Models/Party";
 import { ArrowForwardIcon, EditIcon, LockIcon } from "@chakra-ui/icons";
+import {PartyAPI} from "../../APIs/PartyAPI";
 
 export const UserDashboard = () => {
+  const toast = useToast()
   let { user_id } = useParams();
   const [user, setUser] = useState<User>();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [didUserVote, setDidUserVote] = useState<Boolean>(false);
-  const [userPartyVoted, setUserPartyVoted] = useState<Party>();
+  const [party, setParty] = useState<Party | undefined>(undefined);
 
   const get_user = () => {
     UsersAPI.get_user(ObjectID.createFromHexString(user_id!)).then((res) => {
@@ -68,21 +69,36 @@ export const UserDashboard = () => {
     });
   };
 
+  const get_party = (party_id: ObjectID) => {
+    PartyAPI.get_party(party_id).then((res) => {
+      setParty(res!)
+      console.log("Yazan")
+      console.log(party)
+
+    })
+  }
+
   const get_user_voted_party = (user_id: ObjectID) => {
     ElectionAPI.did_user_vote(user_id).then((res) => {
       let data = res!;
-      if (typeof data === "string") {
-        setDidUserVote(true);
-        setUserPartyVoted(data);
+      if (data.success === true) {
+        get_party(data.party_id!)
       }
     });
   };
 
-  const handle_vote = (party_id: ObjectID) => {
-    ElectionAPI.vote(ObjectID.createFromHexString(user_id!), party_id).then(
-      () => {
-        setDidUserVote(true);
-        onClose();
+  const handle_vote = (party_name: string) => {
+    ElectionAPI.vote(ObjectID.createFromHexString(user_id!), party_name)
+        .then(() => {
+          onClose();
+          toast({
+            title: 'Success.',
+            description: "Successfully Voted for " + party_name + "!",
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+          })
+          get_user_voted_party(ObjectID.createFromHexString(user_id!));
       }
     );
   };
@@ -156,16 +172,16 @@ export const UserDashboard = () => {
           <Spacer height={"80px"}></Spacer>
           <Center></Center>
           <Center>
-            {didUserVote ? (
-              <Button
-                colorScheme="red"
-                bgGradient="linear(to-r, red.400, red.500, red.600)"
-                color="white"
-                variant="solid"
-              >
-                Already Voted for {userPartyVoted!.name}
-              </Button>
-            ) : (
+            {
+              party ?
+                <Center>
+                  <Alert status="success" variant="subtle" maxW={"500px"}>
+                    <Center>
+                      Voted for {party!.name}
+                    </Center>
+                  </Alert>
+                </Center>
+             :
               <Button
                 colorScheme="red"
                 bgGradient="linear(to-r, red.400, red.500, red.600)"
@@ -176,7 +192,7 @@ export const UserDashboard = () => {
               >
                 Vote
               </Button>
-            )}
+            }
 
             <Modal isOpen={isOpen} onClose={onClose}>
               <ModalOverlay />
@@ -187,31 +203,13 @@ export const UserDashboard = () => {
                   <VStack>
                     <Spacer></Spacer>
                     <HStack>
-                      <Button
-                        height={20}
-                        width={150}
-                        colorScheme="red"
-                        size={"lg"}
-                        onClick={() =>
-                          handle_vote(
-                            ObjectID.createFromHexString("liberal_party_id")
-                          )
-                        }
+                      <Button height={20} width={150} colorScheme="red" size={"lg"}
+                        onClick={() => {handle_vote("Liberal")}}
                       >
                         Liberal
                       </Button>
-                      <Button
-                        height={20}
-                        width={150}
-                        colorScheme="blue"
-                        size={"lg"}
-                        onClick={() =>
-                          handle_vote(
-                            ObjectID.createFromHexString(
-                              "conservative_party_id"
-                            )
-                          )
-                        }
+                      <Button height={20} width={150} colorScheme="blue" size={"lg"}
+                        onClick={() => {handle_vote("Conservative")}}
                       >
                         Conservative
                       </Button>
