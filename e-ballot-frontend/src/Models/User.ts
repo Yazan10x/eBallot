@@ -15,3 +15,8 @@ export interface User {
     profile: Profile;
     province: string
 }
+
+export interface Auth_Res{
+  success: Boolean,
+  user_id?: string
+}

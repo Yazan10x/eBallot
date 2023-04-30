@@ -1,8 +1,10 @@
 # Python Imports
+import base64
 from io import BytesIO
 
 import flask
-from flask import Blueprint, Response, jsonify, send_file
+from PIL import Image
+from flask import Blueprint, Response, jsonify, request, send_file
 from bson import ObjectId
 
 # Imports
@@ -31,3 +33,33 @@ def get_user_image(user_id: str) -> Response:
 @users.route("/get_users", methods=['GET'])
 def get_users() -> Response:
     return get.get_users_json()
+
+
+@users.route("/authenticate_user", methods=['POST'])
+def authenticate_user() -> Response:
+    data: str = dict(request.get_json(silent=True)).get("data")
+    print("\n========================================")
+    print("The Data Length is: " + data.__len__().__str__())
+    print("========================================\n")
+
+    base64_str = data.split(",")[1]
+    jpg_bytes = base64.b64decode(base64_str)
+    bytes_io = BytesIO(jpg_bytes)
+    user_id = post.authenticate_user(bytes_io)
+
+    # user_id = ObjectId("644ca69febcdc710c51d0b3d")
+    image = Image.open(bytes_io)
+    image.show()
+    print("The user: " + str(user_id))
+    print("========================================\n")
+
+    if isinstance(user_id, ObjectId):
+        return jsonify({
+            'success': True,
+            'user_id': str(user_id)
+        })
+    else:
+        return jsonify({
+            'success': False,
+            'user_id': None
+        })
