@@ -22,6 +22,14 @@ import {CURRENT_URL} from "../../APIs/0_FLASK_API";
 import {useNavigate} from "react-router-dom";
 import { Bar } from 'react-chartjs-2';
 import { UserData } from './userData';
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend
+} from 'chart.js';
 
 ChartJS.register(
   BarElement,
@@ -109,7 +117,7 @@ export const Home = () => {
         <title>Home</title>
       </header>
 
-      <Container maxW={"3xl"}> 
+      <Container maxW={"3xl"}>
         <VStack
           as={Box}
           textAlign={"center"}
@@ -180,6 +188,7 @@ export const Home = () => {
             </ModalFooter>
           </ModalContent>
         </Modal>
+        <Chart />
       </Container>
     </>
   );
