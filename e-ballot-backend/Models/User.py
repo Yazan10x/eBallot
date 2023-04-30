@@ -3,13 +3,11 @@ This File Contains the User Model
 """
 # Python Imports:
 from __future__ import annotations
-from typing import Optional
 from bson import ObjectId
 from bson.binary import Binary
 from datetime import datetime
 
 # Imports
-from data_manager.e_ballot_db import E_BALLOT_DB
 
 
 class User:

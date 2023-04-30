@@ -1,6 +1,5 @@
 # Python Imports
-import flask
-from flask import Blueprint, Response, jsonify
+from flask import Blueprint, Response
 from bson import ObjectId
 
 # Imports

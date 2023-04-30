@@ -13,7 +13,7 @@ def create_user(first_name: str, last_name: str, dob: datetime, gender: str, ema
 
 
 if __name__ == '__main__':
-    
+
     # Yazan
     with open('tests/data/yazan_id1.jpg', 'rb') as f:
         image_data = f.read()
@@ -24,25 +24,22 @@ if __name__ == '__main__':
     port_image = Binary(image_data)
 
     create_user("Yazan", "Armoush", datetime(2003, 5, 8), "M", "yazan@armoush.com", gov_id_image, port_image, "ontario")
-    
-    
-    #Usman
+
+    # Usman
     with open('tests/data/usman_id1.jpg', 'rb') as f:
         image_data = f.read()
     gov_id_image = Binary(image_data)
 
     create_user("Usman", "Tahir", datetime(2002, 5, 4), "M", "usman@tahir.com", gov_id_image, port_image, "bc")
-    
-    
-    #Hussain
+
+    # Hussain
     with open('tests/data/hussain_id1.jpg', 'rb') as f:
         image_data = f.read()
     gov_id_image = Binary(image_data)
 
     create_user("Hussain", "Omer", datetime(2003, 7, 13), "M", "hussain@omer.com", gov_id_image, port_image, "quebec")
-    
-    
-    #Ishav
+
+    # Ishav
     with open('tests/data/ishav_id1.jpg', 'rb') as f:
         image_data = f.read()
     gov_id_image = Binary(image_data)

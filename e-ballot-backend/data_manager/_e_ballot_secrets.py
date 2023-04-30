@@ -1,11 +1,12 @@
 """
 Database Orchestrator
 """
+from typing import Tuple
 import os
 import json
 
 
-def get_db() -> tuple[str, str]:
+def get_db() -> Tuple[str, str]:
 
     if os.environ.get('DB_API_ADDRESS') is not None:
         _DB_HOST = os.environ.get('DB_API_ADDRESS')

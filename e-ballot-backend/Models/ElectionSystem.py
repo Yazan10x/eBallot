@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Optional
 from bson import ObjectId
-from routes.users.get import get_users, get_user
+from routes.users.get import get_user
 from routes.party.get import get_parties, get_party
 from data_manager.e_ballot_db import E_BALLOT_DB
 
