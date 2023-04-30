@@ -1,4 +1,4 @@
-# eBallot Voting System
+# FaceVote Voting System
 
 A fully-fledged secure voting application that features facial recognition and ID match is designed to provide a secure and reliable platform for voting without the need for registration. The application is connected to the government ID database to verify the identity of the voters before they cast their votes.
 
