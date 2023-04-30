@@ -14,9 +14,12 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton,
+  ModalCloseButton, Stack, Skeleton, useToast,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
+import {UsersAPI} from "../../APIs/UsersAPI";
+import {CURRENT_URL} from "../../APIs/0_FLASK_API";
+import {useNavigate} from "react-router-dom";
 import { Bar } from 'react-chartjs-2';
 import { UserData } from './userData';
 
@@ -29,9 +32,12 @@ ChartJS.register(
 )
 
 export const Home = () => {
+  let navigate = useNavigate();
+  const toast = useToast()
   const [showWebcam, setShowWebcam] = React.useState(false);
-  const [screenshot, setScreenshot] = React.useState(null);
+  const [screenshot, setScreenshot] = React.useState<string | null>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [is_picture_taken, set_is_picture_taken] = React.useState<boolean>(false)
   const finalRef = React.useRef(null);
   const webcamRef = React.useRef(null);
 
@@ -39,12 +45,57 @@ export const Home = () => {
     onOpen();
   };
 
-  const handleCaptureClick = React.useCallback(() => {
+  const handleCloseWebCam = () => {
+    onClose();
+    set_is_picture_taken(false)
+    setScreenshot(null)
+  }
+
+  const authenticate_user = async (img: string) => {
+
+    UsersAPI.authenticate_user(img!).then((res) => {
+      let auth_res = res!;
+      console.log("Initial Contact")
+        console.log(res)
+      if (auth_res.success === true) {
+        navigate("/citizens/" + auth_res.user_id!)
+      } else {
+        console.log("Picture Error")
+        console.log(res)
+        handleCloseWebCam()
+        toast({
+                title: 'Error.',
+                description: "Please try again",
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+              })
+      }
+    })
+        .catch((err) => {
+          console.log("Catch Error")
+          console.log(err)
+          handleCloseWebCam()
+          toast({
+                  title: 'Error.',
+                  description: "Please try again",
+                  status: 'error',
+                  duration: 5000,
+                  isClosable: true,
+                })
+        })
+  }
+
+  const handleCaptureClick = React.useCallback( async () => {
     if (webcamRef.current) {
       // @ts-ignore
-      const screenshot = webcamRef.current.getScreenshot();
-      setScreenshot(screenshot);
+      const img = webcamRef.current.getScreenshot();
+      // setScreenshot(screenshot);
+      authenticate_user(img!).then()
+      set_is_picture_taken(true)
+
     }
+
   }, [webcamRef, setScreenshot]);
 
 
@@ -106,10 +157,26 @@ export const Home = () => {
               <Webcam height={480} width={640} screenshotFormat="image/jpeg" ref={webcamRef} />
             </ModalBody>
             <ModalFooter>
-              <Button colorScheme="blue" mr={3} onClick={onClose}>
+              <Button
+                  colorScheme="red"
+                  bgGradient="linear(to-r, blue.400, blue.500, blue.600)"
+                  color="white"
+                  variant="solid"
+                  onClick={handleCloseWebCam}>
                 Close
               </Button>
-              <Button variant="ghost" onClick={handleCaptureClick}>Capture ID</Button>
+              <Spacer></Spacer>
+              <Button
+                  colorScheme="red"
+                  bgGradient="linear(to-r, red.400, red.500, red.600)"
+                  color="white"
+                  variant="solid"
+                  onClick={handleCaptureClick}
+                  isDisabled={is_picture_taken}
+                  isLoading={is_picture_taken}
+              >
+                Capture ID
+              </Button>
             </ModalFooter>
           </ModalContent>
         </Modal>

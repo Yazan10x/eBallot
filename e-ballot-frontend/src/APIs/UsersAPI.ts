@@ -1,6 +1,6 @@
 import FLASK_HTTPS, {CURRENT_URL} from "./0_FLASK_API";
 import {ObjectID} from "bson";
-import {User} from "../Models/User";
+import {Auth_Res, User} from "../Models/User";
 
 export namespace UsersAPI {
 
@@ -25,6 +25,19 @@ export namespace UsersAPI {
         return FLASK_HTTPS.get(route_name + "/get_users")
             .then((res) => {
                 return res.data as Array<User>
+            }).catch((res) => {
+                console.log(res)
+            })
+    }
+
+    export const authenticate_user = async (img: string) => {
+        return FLASK_HTTPS.post(route_name + "/authenticate_user",
+            {
+                data: img
+            }
+            )
+            .then((res) => {
+                return res.data as Auth_Res
             }).catch((res) => {
                 console.log(res)
             })

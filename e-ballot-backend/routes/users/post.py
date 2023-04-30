@@ -1,29 +1,39 @@
-import face_recognition
 from io import BytesIO
+from typing import Optional
 from PIL import Image
+import imagehash
+from bson import ObjectId
 
-"""
-User Post
-"""
-# from typing import Optional
-#
-# import flask
-# from bson import ObjectId
-# from flask import Response, jsonify
-#
-# from Models.User import User
-# from data_manager.e_ballot_db import E_BALLOT_DB
+from routes.users.get import get_users
 
-def compare_image(_img1: BytesIO, _img2: BytesIO) -> bool:
-    img1 = Image.open(BytesIO(_img1))
-    img2 = Image.open(BytesIO(_img2))
-    img1 = face_recognition.load_image_file(img1)
-    img2 = face_recognition.load_image_file(img2)
-    img1_encoding = face_recognition.face_encodings(img1)[0]
-    im2_encoding = face_recognition.face_encodings(img2)[0]
-    return face_recognition.compare_faces(img1_encoding, im2_encoding)
-    
-    
-    
-    
-    
+
+def authenticate_user(_img1: BytesIO) -> Optional[ObjectId]:
+    users = get_users()
+    for user in users:
+        binary_data = user.profile.government_id_image
+        _img2 = BytesIO(binary_data)
+        if _compare_image(_img1, _img2):
+            return user.oid
+    return None
+
+
+def _compare_image(_img1: BytesIO, _img2: BytesIO) -> bool:
+
+    hash0 = imagehash.average_hash(Image.open(_img1))
+    hash1 = imagehash.average_hash(Image.open(_img2))
+    score = 1.0 - ((hash0 - hash1) / 32)
+
+    print("\n========================================")
+    print("The Score: " + str(score))
+    print("========================================\n")
+
+    if score == 1.0:
+        return True
+    elif score >= 0.2:
+        return True
+    else:
+        return False
+
+
+
+

@@ -14,7 +14,7 @@ def create_user(first_name: str, last_name: str, dob: datetime, gender: str, ema
 
 if __name__ == '__main__':
 
-    with open('tests/data/yazan_id.jpg', 'rb') as f:
+    with open('tests/data/yazan_id1.jpg', 'rb') as f:
         image_data = f.read()
     gov_id_image = Binary(image_data)
 
