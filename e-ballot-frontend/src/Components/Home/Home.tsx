@@ -146,7 +146,7 @@ export const Home = () => {
                     size={"lg"}
                     onClick={handleViewAccountClick}
                     >
-                    Vote Now!
+                    Vote Now
                 </Button>
               </Heading>
             </Text>
