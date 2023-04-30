@@ -109,7 +109,7 @@ export const Home = () => {
         <title>Home</title>
       </header>
 
-      <Container maxW={"3xl"}>
+      <Container maxW={"3xl"}> 
         <VStack
           as={Box}
           textAlign={"center"}
@@ -121,9 +121,9 @@ export const Home = () => {
             fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
             lineHeight={"110%"}
           >
-            Together we Vote, <br />
-            <Text as={"span"} color={"red.400"}>
-              Inclusivity!
+            Your Vote. Your Future.<br />
+            <Text as={'span'} color={'red.400'}>
+            Face Authenticated.
             </Text>
           </Heading>
           <Spacer />
