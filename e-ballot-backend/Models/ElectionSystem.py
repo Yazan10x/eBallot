@@ -30,13 +30,13 @@ class ElectionSystem:
         parties = get_parties()
         for party in parties:
             if user.oid in party.ontario:
-                return user.oid
+                return party.oid
             if user.oid in party.quebec:
-                return user.oid
+                return party.oid
             if user.oid in party.bc:
-                return user.oid
+                return party.oid
             if user.oid in party.alberta:
-                return user.oid
+                return party.oid
         return None
 
     @staticmethod
