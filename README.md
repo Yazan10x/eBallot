@@ -11,3 +11,9 @@ To ensure the confidentiality of the voting process, the application encrypts th
 The application also features a real-time monitoring system that allows election officials to monitor the voting process and identify any irregularities. The system can detect any attempts to hack or manipulate the voting process and alert officials to take necessary action.
 
 In conclusion, a fully-fledged secure voting application that features facial recognition and ID match is an ideal solution for a secure and reliable voting process. The application's integration with the government ID database eliminates the need for voter registration, making the voting process more accessible and convenient for voters.
+
+## Demo
+
+
+https://user-images.githubusercontent.com/67332652/235374229-d99374c4-5bc4-49f8-88d1-47e8b03df6b0.mp4
+
