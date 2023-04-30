@@ -1,8 +1,6 @@
 # Python Imports
 import base64
 from io import BytesIO
-
-import flask
 from PIL import Image
 from flask import Blueprint, Response, jsonify, request, send_file
 from bson import ObjectId

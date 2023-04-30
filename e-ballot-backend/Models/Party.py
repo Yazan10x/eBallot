@@ -1,10 +1,5 @@
 from __future__ import annotations
-from typing import Optional
 from bson import ObjectId
-from bson.binary import Binary
-from datetime import datetime
-from routes.users.get import get_users
-from Models import User
 
 
 class Party:
