@@ -10,7 +10,12 @@ def create_party(oid: ObjectId, name: str, ontario: List[ObjectId], quebec: List
     E_BALLOT_DB.party_coll.insert_one(party.to_json())
 
 
-if __name__ == '__main__':
+def run():
     E_BALLOT_DB.party_coll.drop()
     create_party(ObjectId(), "Liberal", [], [], [], [])
     create_party(ObjectId(), "Conservative", [], [], [], [])
+
+
+if __name__ == '__main__':
+    run()
+

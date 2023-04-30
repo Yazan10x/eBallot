@@ -16,9 +16,15 @@ def get_user(user_id: str) -> Response:
     return get.get_user_json(ObjectId(user_id))
 
 
-@users.route("/get_user_government_id_image/<user_id>", methods=['GET'])
-def get_user_id_image(user_id: str) -> Response:
+@users.route("/id1/<user_id>", methods=['GET'])
+def get_user_id1(user_id: str) -> Response:
     _image = BytesIO(get.get_user(ObjectId(user_id)).profile.id1)
+    return send_file(_image, mimetype='image/jpg')
+
+
+@users.route("/id2/<user_id>", methods=['GET'])
+def get_user_id2(user_id: str) -> Response:
+    _image = BytesIO(get.get_user(ObjectId(user_id)).profile.id2)
     return send_file(_image, mimetype='image/jpg')
 
 

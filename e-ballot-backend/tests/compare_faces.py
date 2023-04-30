@@ -65,7 +65,5 @@ def test_false():
     assert not (compare_image(BytesIO(hussain1), BytesIO(usman1)))
 
 
-
-
 if __name__ == '__main__':
     pytest.main([])
