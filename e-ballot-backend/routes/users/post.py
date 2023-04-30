@@ -29,7 +29,7 @@ def _compare_image(_img1: BytesIO, _img2: BytesIO) -> bool:
 
     if score == 1.0:
         return True
-    elif score >= 0.2:
+    elif score >= 0.5:
         return True
     else:
         return False
