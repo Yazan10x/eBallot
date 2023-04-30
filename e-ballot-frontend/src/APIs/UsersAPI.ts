@@ -11,8 +11,8 @@ export namespace UsersAPI {
             .then((res) => {
                 let user = res.data as User
                 user.profile.dob = new Date(user.profile.dob)
-                user.profile.government_id_image = CURRENT_URL + "/users/get_user_government_id_image/" + user._id.toString()
-                user.profile.portrait_image = CURRENT_URL + "/users/get_user_image/" + user._id.toString()
+                user.profile.id1 = CURRENT_URL + "/users/id1/" + user._id.toString()
+                user.profile.id2 = CURRENT_URL + "/users/id2/" + user._id.toString()
                 console.log(user)
                 return user
             })

@@ -32,7 +32,7 @@ export const UsersTable = React.memo(() =>  {
                         username: user.profile.first_name,
                         email: user.profile.email,
                         position: user.profile.first_name,
-                        link: window.location.pathname + user._id.toString()
+                        link: window.location.pathname + "/" + user._id.toString()
                     }
                 })
                 set_users([])

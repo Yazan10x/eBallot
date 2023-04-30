@@ -18,18 +18,18 @@ class User:
         dob: datetime
         gender: str    # M/F
         email: str
-        government_id_image: Binary
-        portrait_image: Binary
+        id1: Binary
+        id2: Binary
 
         def __init__(self, first_name: str, last_name: str, dob: datetime, gender: str, email: str,
-                     government_id_image: Binary, portrait_image: Binary) -> None:
+                     id1: Binary, id2: Binary) -> None:
             self.first_name = first_name
             self.last_name = last_name
             self.dob = dob
             self.gender = gender
             self.email = email
-            self.government_id_image = government_id_image
-            self.portrait_image = portrait_image
+            self.id1 = id1
+            self.id2 = id2
 
         @staticmethod
         def from_json(doc: dict) -> User.Profile:
@@ -39,8 +39,8 @@ class User:
                 dob=doc['dob'],
                 gender=doc['gender'],
                 email=doc['email'],
-                government_id_image=doc['government_id_image'],
-                portrait_image=doc['portrait_image']
+                id1=doc['id1'],
+                id2=doc['id2']
             )
 
         def to_json(self) -> dict:
@@ -50,8 +50,8 @@ class User:
                 'dob': self.dob,
                 'gender': self.gender,
                 'email': self.email,
-                'government_id_image': self.government_id_image,
-                'portrait_image': self.portrait_image
+                'id1': self.id1,
+                'id2': self.id2
             }
 
     # ===================================

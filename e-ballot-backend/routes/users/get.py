@@ -14,8 +14,8 @@ from data_manager.e_ballot_db import E_BALLOT_DB
 def get_user_json(user_id: ObjectId) -> Response:
     user = get_user(user_id).to_json()
     user['_id'] = str(user['_id'])
-    user['profile']['government_id_image'] = base64.b64encode(user['profile']['government_id_image']).decode('utf-8')
-    user['profile']['portrait_image'] = base64.b64encode(user['profile']['portrait_image']).decode('utf-8')
+    user['profile']['id1'] = ""
+    user['profile']['id2'] = ""
     return jsonify(user)
 
 
@@ -31,8 +31,8 @@ def get_users_json() -> Response:
     for user in _users:
         user = user.to_json()
         user['_id'] = str(user['_id'])
-        user['profile']['government_id_image'] = ""
-        user['profile']['portrait_image'] = ""
+        user['profile']['id1'] = ""
+        user['profile']['id2'] = ""
         users.append(user)
     return jsonify(users)
 
