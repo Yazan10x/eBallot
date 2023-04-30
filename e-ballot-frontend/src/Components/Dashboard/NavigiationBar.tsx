@@ -57,10 +57,10 @@ export const NavBar = () => {
             justify={{ base: 'center', md: 'start' }}
             verticalAlign={'middle'}>
           <HStack>
-            <Image
-                src="/logo512.png"
+            <Image mr={5}
+                src="/logo.png"
                 width={"40px"}
-                alt={"eBallot LOGO"}>
+                alt={"https://freeicons.io/vector-faces-and-profiles-icon-set/checkmark-male-profile-avatar-user-member-person-face-employee-business-icon-52181"}>
             </Image>
 
             <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
