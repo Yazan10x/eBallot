@@ -14,7 +14,7 @@ import {
   ModalHeader,
   ModalFooter,
   ModalBody,
-  ModalCloseButton, Stack, Skeleton, useToast,
+  ModalCloseButton, Stack, Skeleton, useToast, Center,
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 import {UsersAPI} from "../../APIs/UsersAPI";
@@ -117,27 +117,14 @@ export const Home = () => {
         <title>Home</title>
       </header>
 
-      <Container maxW={"3xl"}>
-        <VStack
-          as={Box}
-          textAlign={"center"}
-          spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}
-        >
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-            lineHeight={"110%"}
-          >
+      <Center>
+       <Box>
+        <VStack as={Box} textAlign={"center"} spacing={{ base: 8, md: 14 }} py={{ base: 20, md: 36 }}>
+          <Heading fontWeight={600} fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}>
             Your Vote. Your Future.<br />
-            <Text as={'span'} color={'red.400'}>
-            Face Authenticated.
-            </Text>
+            <Text as={'span'} color={'red.400'}>Face Authenticated.</Text>
           </Heading>
-          <Spacer />
-          <VStack>
             <Text color={"gray.500"}>
-              <Heading>
                 <Button
                     colorScheme="red"
                     bgGradient="linear(to-r, red.400, red.500, red.600)"
@@ -148,13 +135,10 @@ export const Home = () => {
                     >
                     Vote Now
                 </Button>
-              </Heading>
             </Text>
-          </VStack>
-          <VStack>
-            {showWebcam && <Webcam videoConstraints={{ width: 640, height: 480 }} screenshotFormat="image/jpeg" ref={webcamRef}></Webcam>}
-            {screenshot && <img src={screenshot} alt="Screenshot" />}
-          </VStack>
+            {showWebcam && <Webcam videoConstraints={{ width: 640, height: 0 }} screenshotFormat="image/jpeg" ref={webcamRef}></Webcam>}
+            {/*{screenshot && <img src={screenshot} alt="Screenshot" />}*/}
+            <Chart />
         </VStack>
         <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -188,8 +172,9 @@ export const Home = () => {
             </ModalFooter>
           </ModalContent>
         </Modal>
-        <Chart />
-      </Container>
+      </Box>
+      </Center>
+
     </>
   );
 };

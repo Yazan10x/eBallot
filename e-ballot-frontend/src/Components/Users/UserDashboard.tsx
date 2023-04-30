@@ -108,7 +108,7 @@ export const UserDashboard = () => {
         <Flex justify={"center"} mt={12}>
           <Image
             width={"500px"}
-            src={user?.profile.government_id_image}
+            src={user?.profile.id1}
             css={{
               border: "2px solid white",
             }}
