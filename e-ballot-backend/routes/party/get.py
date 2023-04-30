@@ -11,13 +11,20 @@ from data_manager.e_ballot_db import E_BALLOT_DB
 
 
 def get_party_json(party_id: ObjectId) -> Response:
-    party = get_party(party_id).to_json()
+    party = get_party(party_id).to_json_simple()
     party['_id'] = str(party['_id'])
+    print(party)
     return jsonify(party)
 
 
 def get_party(party_id: ObjectId) -> Party:
     party = dict(E_BALLOT_DB.party_coll.find_one({"_id": party_id}))
+    party = Party.from_json(party)
+    return party
+
+
+def get_party_using_query(query: dict) -> Party:
+    party = dict(E_BALLOT_DB.party_coll.find_one(query))
     party = Party.from_json(party)
     return party
 
