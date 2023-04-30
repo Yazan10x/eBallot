@@ -33,16 +33,16 @@ const Chart = () => {
     labels: UserData.map((o) => o.province),
     datasets: [
       {
-        label: 'Votes',
-        backgroundColor: 'rgba(0, 255, 0, 0.2)',
-        borderColor: 'rgb(0, 255, 0)',
+        label: 'Liberal votes',
+        backgroundColor: 'rgba(255, 64, 60)',
+        borderColor: 'rgb(0,0,0)',
         borderWidth: 1,
         data: UserData.map((o) => o.liberal),
       },
       {
-        label: 'random',
-        backgroundColor: 'rgba(0, 255, 0, 0.2)',
-        borderColor: 'rgb(0, 255, 0)',
+        label: 'Conservative votes',
+        backgroundColor: 'rgba(0, 122, 204)',
+        borderColor: 'rgb(0,0,0)',
         borderWidth: 1,
         data: UserData.map((o) => o.conservative),
       }, 
@@ -62,8 +62,6 @@ const Chart = () => {
 
 export const Home = () => {
 
-
-  
   return (
     <>
       <header>
