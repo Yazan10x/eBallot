@@ -1,5 +1,7 @@
 import * as React from "react";
 import {
+  Alert,
+  AlertIcon,
   Avatar,
   Box,
   Center,
@@ -69,17 +71,17 @@ export const UserDashboard = () => {
   const get_user_voted_party = (user_id: ObjectID) => {
     ElectionAPI.did_user_vote(user_id).then((res) => {
       let data = res!;
-      if (typeof data === 'string') {
-        setDidUserVote(true)
+      if (typeof data === "string") {
+        setDidUserVote(true);
         setUserPartyVoted(data);
-      } 
+      }
     });
   };
 
   const handle_vote = (party_id: ObjectID) => {
     ElectionAPI.vote(ObjectID.createFromHexString(user_id!), party_id).then(
       () => {
-        setDidUserVote(true)
+        setDidUserVote(true);
         onClose();
       }
     );
@@ -87,11 +89,15 @@ export const UserDashboard = () => {
 
   useEffect(() => {
     get_user();
-    get_user_voted_party(ObjectID.createFromHexString(user_id!))
+    get_user_voted_party(ObjectID.createFromHexString(user_id!));
   }, []);
 
   return (
-    <Center py={6}>
+    <Flex direction="column" alignItems="center" py={6}>
+      <Alert status="success" variant="subtle" mb={5}>
+        <AlertIcon />
+        Authenticated Successfully!
+      </Alert>
       <Box
         w={"full"}
         bg={useColorModeValue("white", "gray.800")}
@@ -166,8 +172,9 @@ export const UserDashboard = () => {
                 color="white"
                 variant="solid"
                 onClick={onOpen}
+                size={"lg"}
               >
-                Vote!
+                Vote
               </Button>
             )}
 
@@ -218,6 +225,6 @@ export const UserDashboard = () => {
           </Center>
         </Box>
       </Box>
-    </Center>
+    </Flex>
   );
 };

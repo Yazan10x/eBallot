@@ -32,7 +32,7 @@ export const UsersTable = React.memo(() =>  {
                         username: user.profile.first_name,
                         email: user.profile.email,
                         position: user.profile.first_name,
-                        link: window.location.pathname + "/" + user._id.toString()
+                        link: window.location.pathname + user._id.toString()
                     }
                 })
                 set_users([])
@@ -87,13 +87,13 @@ export const UsersTable = React.memo(() =>  {
                         fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
                         lineHeight={"100%"}
                       >
-                        Users
+                        Voters
 
                          </Heading>
                     <Heading fontWeight={600}
                         fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
                                  color={"red.400"}>
-                          Page!
+                          Page
                         </Heading>
                 </VStack>
 
