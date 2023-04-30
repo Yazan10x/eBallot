@@ -25,4 +25,16 @@ export namespace PartyAPI {
             })
     }
 
+    export const get_partiesLength = async () => {
+        return FLASK_HTTPS.get(route_name + "/get_parties")
+            .then((res) => {
+                const partyArray = res.data as Array<Party>;
+                const partyArrayLength = partyArray.length; // get the length of the array
+                return partyArrayLength;
+            }).catch((res) => {
+                console.log(res)
+            })
+    }
+    
+
 }
