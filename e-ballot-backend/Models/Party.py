@@ -46,6 +46,18 @@ class Party:
                 'total_votes': self.get_all_voters()
             }
 
+    def to_json_simple(self) -> dict:
+        return \
+            {
+                '_id': self.oid,
+                'name': self.name,
+                'ontario': self.ontario.__len__(),
+                'quebec': self.quebec.__len__(),
+                'bc': self.bc.__len__(),
+                'alberta': self.alberta.__len__(),
+                'total_votes': self.get_all_voters().__len__()
+            }
+
     def get_all_voters(self):
         return self.ontario + self.quebec + self.bc + self.alberta
 
