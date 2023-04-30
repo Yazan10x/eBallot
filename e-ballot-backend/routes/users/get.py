@@ -31,8 +31,8 @@ def get_users_json() -> Response:
     for user in _users:
         user = user.to_json()
         user['_id'] = str(user['_id'])
-        user['profile']['government_id_image'] = base64.b64encode(user['profile']['government_id_image']).decode('utf-8')
-        user['profile']['portrait_image'] = base64.b64encode(user['profile']['portrait_image']).decode('utf-8')
+        user['profile']['government_id_image'] = ""
+        user['profile']['portrait_image'] = ""
         users.append(user)
     return jsonify(users)
 
