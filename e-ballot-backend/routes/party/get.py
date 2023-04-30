@@ -26,7 +26,7 @@ def get_parties_json() -> Response:
     _parties: List[Party] = get_parties()
     parties: List[dict] = []
     for party in _parties:
-        party = party.to_json()
+        party = party.to_json_simple()
         party['_id'] = str(party['_id'])
         parties.append(party)
     return jsonify(parties)
