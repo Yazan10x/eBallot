@@ -18,13 +18,13 @@ def get_user(user_id: str) -> Response:
 
 @users.route("/get_user_government_id_image/<user_id>", methods=['GET'])
 def get_user_id_image(user_id: str) -> Response:
-    _image = BytesIO(get.get_user(ObjectId(user_id)).profile.government_id_image)
+    _image = BytesIO(get.get_user(ObjectId(user_id)).profile.id1)
     return send_file(_image, mimetype='image/jpg')
 
 
 @users.route("/get_user_image/<user_id>", methods=['GET'])
 def get_user_image(user_id: str) -> Response:
-    _image = BytesIO(get.get_user(ObjectId(user_id)).profile.government_id_image)
+    _image = BytesIO(get.get_user(ObjectId(user_id)).profile.id1)
     return send_file(_image, mimetype='image/jpg')
 
 
