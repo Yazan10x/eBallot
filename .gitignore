@@ -29,3 +29,7 @@ e-ballot-backend/data_manager/secrets.json
 *.
 *.xml
 *.iml
+.env
+*e-ballot-backend/tests/data
+*e-ballot-backend/utils/data
+
