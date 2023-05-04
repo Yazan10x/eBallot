@@ -52,10 +52,10 @@ def create_ishav():
 
 def run():
     E_BALLOT_DB.users_coll.drop()
-    create_yazan()
-    create_usman()
-    create_hussain()
-    create_ishav()
+    # create_yazan()
+    # create_usman()
+    # create_hussain()
+    # create_ishav()
 
 
 if __name__ == '__main__':
